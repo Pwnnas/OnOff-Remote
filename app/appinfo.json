@@ -1,7 +1,7 @@
 {
-  "id": "ui30",
+  "id": "netflix",
   "title": "PicCap OnOff",
-  "appDescription": "Movies - RakutenTV button",
+  "appDescription": "Movies - Netflix button",
   "version": "0.0.9",
   "vendor": "open source",
   "type": "web",
