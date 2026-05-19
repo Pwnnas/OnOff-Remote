@@ -2,15 +2,6 @@
 
 
 
-IMPORTANT!!!
-
-Still got some bug to fix that after few reboot it has problem with letting picap run. Trying to fix it asap
-
-
-
-
-
-
 A simple webOS application to toggle the `piccap` service on your LG TV by hijacking dedicated remote buttons (e.g., Netflix, Amazon).
 
 ## Setup Instructions

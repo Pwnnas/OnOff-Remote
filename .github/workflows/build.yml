@@ -9,17 +9,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Extract version from appinfo.json & GITHUB_REPOSITORY
       
         run: |
              echo "IPK_VERSION=$(jq -r .version < app/appinfo.json)" >> $GITHUB_ENV
+             echo "IPK_ID=$(jq -r .id < app/appinfo.json)" >> $GITHUB_ENV
              echo "IPK_REPO"=$GITHUB_REPOSITORY >> $GITHUB_ENV
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 20
 
       - name: Install package tools
         run: npm install -g @webosose/ares-cli @webosbrew/pub-utils
@@ -30,7 +31,7 @@ jobs:
       - name: Generate manifest for homebrew channel
         env:
           appinfo_path: ./app/appinfo.json
-          ipk_filename: ./ui30_${{ env.IPK_VERSION }}_all.ipk
+          ipk_filename: ./${{ env.IPK_ID }}_${{ env.IPK_VERSION }}_all.ipk
           icon_url: https://github.com/${{ env.IPK_REPO }}/raw/main/app/largeIcon.png
           repo_url: https://github.com/${{ env.IPK_REPO }}
 
@@ -41,14 +42,14 @@ jobs:
              
 
       - name: Upload artifact & Create release
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: onoff-remote_ipk
           path: |
             ${{github.workspace}}/*.ipk
             
             
-      - uses: softprops/action-gh-release@v1
+      - uses: softprops/action-gh-release@v2
         id: create-release
         if: "github.ref == 'refs/heads/main'"
         with:
