@@ -4,9 +4,6 @@ on:
   pull_request:
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
@@ -47,24 +44,11 @@ jobs:
              
              
 
-      - name: Upload artifact & Create release
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: onoff-remote_ipk
           path: |
-            ${{github.workspace}}/*.ipk
-            
-            
-      - uses: softprops/action-gh-release@v2
-        id: create-release
-        if: "github.ref == 'refs/heads/main'"
-        with:
-          token: "${{ secrets.GITHUB_TOKEN }}"
-        
-          tag_name: ${{ env.IPK_VERSION }}
-          prerelease: false
-          name: ${{ env.IPK_VERSION }}
-          files: |
             ${{github.workspace}}/*.ipk
             ${{github.workspace}}/ui30.manifest.json
             
