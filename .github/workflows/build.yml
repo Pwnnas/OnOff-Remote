@@ -4,6 +4,12 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build_ipk:
     runs-on: ubuntu-latest
