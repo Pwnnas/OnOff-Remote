@@ -1,6 +1,6 @@
 # OnOff-Remote (Updated Fork)
 
-
+## Having issues that the remote stops working after a while. Right now I cant recomment using this.
 
 A simple webOS application to toggle the `piccap` service on your LG TV by hijacking dedicated remote buttons (e.g., Netflix, Amazon).
 
